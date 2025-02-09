@@ -408,7 +408,7 @@ if (formData.includeSocial && formData.socialLinks.length > 0) {
    {\\Huge \\scshape {${escapedName || 'Name'}}} \\\\ \\vspace{2pt}
     
     \\small
-    \\raisebox{-0.1\\height}\\faPhone\\ \\underline{${escapedMobile || 'Mobile'}}} \\hfill
+    \\raisebox{-0.1\\height}\\faPhone\\ \\underline{${escapedMobile || 'Mobile'}} \\hfill
     \\raisebox{-0.1\\height}\\faEnvelope\ \\underline{${formData.email.replace(/_/g, '\\_').replace(/@/g, '\\@') || 'Email'}} \\hfill
     ${escapedRollNo ? `\\underline{${escapedRollNo}} \\hfill` : ''}
     ${socialLinksLatex}

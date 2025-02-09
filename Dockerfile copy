@@ -1,8 +1,8 @@
-FROM node:16
+# Use a base image with LaTeX installed
+FROM texlive/texlive:latest
 
-# Install LaTeX packages (texlive-full to avoid missing dependencies)
+# Install necessary system dependencies
 RUN apt-get update && apt-get install -y \
-    texlive-full \
     curl \
     wget \
     git \
@@ -10,6 +10,10 @@ RUN apt-get update && apt-get install -y \
     xz-utils \
     latexmk \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -22,9 +26,6 @@ RUN npm install
 
 # Copy the rest of the application code
 COPY . .
-
-# Ensure the LaTeX output directory is writable
-RUN chmod -R 777 /app/resumes
 
 # Expose the port the app runs on
 EXPOSE 5001
